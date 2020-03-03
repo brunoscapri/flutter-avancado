@@ -14,25 +14,30 @@ class HomeBloc extends ChangeNotifier {
 
   String selectedCategory = "all";
 
+  HomeBloc() {
+    getCategories();
+    getProducts();
+  }
+
   getCategories() {
     categoryRepository.getAll().then((data) {
       this.categories = data;
+      notifyListeners();
     });
-    notifyListeners();
   }
 
   getProducts() {
     productRepository.getAll().then((data) {
       this.products = data;
+      notifyListeners();
     });
-    notifyListeners();
   }
 
   getProductsByCategory() {
     productRepository.getByCategory(selectedCategory).then((data) {
       this.products = data;
+      notifyListeners();
     });
-    notifyListeners();
   }
 
   changeCategory(String tag) {
