@@ -10,35 +10,37 @@ class HomePage extends StatelessWidget {
     final HomeBloc bloc = Provider.of<HomeBloc>(context);
     return Scaffold(
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(
-              height: 60,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text("Categorias",
-                  style: Theme.of(context).textTheme.headline),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            CategoryList(
-              categories: bloc.categories,
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text("Mais Vendidos",
-                  style: Theme.of(context).textTheme.headline),
-            ),
-            ProductList(
-              products: bloc.products,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(
+                height: 60,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text("Categorias",
+                    style: Theme.of(context).textTheme.headline),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              CategoryList(
+                categories: bloc.categories,
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text("Mais Vendidos",
+                    style: Theme.of(context).textTheme.headline),
+              ),
+              ProductList(
+                products: bloc.products,
+              ),
+            ],
+          ),
         ),
       ),
     );

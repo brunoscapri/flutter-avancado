@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shopping/models/product-list-item.model.dart';
+import 'package:shopping/ui/android/pages/product.page.dart';
+import 'package:shopping/ui/shared/widgets/shared/add-to-cart.widget.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductListItemModel item;
@@ -21,12 +23,28 @@ class ProductCard extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          Image.network(item.image),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductPage(
+                      tag: item.tag,
+                    ),
+                  ),
+                );
+              },
+              child: Image.network(item.image)),
           SizedBox(height: 10),
           Text("${item.title}"),
           SizedBox(height: 60),
           Text("${item.brand}"),
-          Text("R\$${price.format(item.price)}"),
+          Row(
+            children: <Widget>[
+              Text("R\$${price.format(item.price)}"),
+              AddToCart(item: item),
+            ],
+          )
         ],
       ),
     );

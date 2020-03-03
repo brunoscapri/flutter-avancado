@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping/blocs/cart.bloc.dart';
 import 'package:shopping/blocs/home.bloc.dart';
-import 'package:shopping/ui/android/pages/home.page.dart';
-import 'package:shopping/ui/shared/widgets/category-list.widget.dart';
-import 'package:shopping/ui/shared/widgets/product-list.widget.dart';
+import 'package:shopping/ui/android/pages/tabs.page.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +15,7 @@ class Main extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: DefaultTabController(length: 3, child: TabsPage()),
     );
   }
 }
@@ -27,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<HomeBloc>.value(value: HomeBloc()),
+        ChangeNotifierProvider<CartBloc>.value(value: CartBloc()),
       ],
       child: Main(),
     );
